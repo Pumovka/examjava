@@ -20,7 +20,11 @@ public class Transaction {
             if (recipient.getBill().lock.tryLock()) {
                 if (sender.getBill().lock.tryLock()) {
 
-                    Bank.addTransaction(id, recipient, sender, countMoney);
+                    try {
+                        Bank.addTransaction(id, recipient, sender, countMoney);
+                    } catch (SendManyExeption sendManyExeption) {
+                        sendManyExeption.printStackTrace();
+                    }
 
                     if (sender.getBill().getMoney() < countMoney) {
                         recipient.getBill().lock.unlock();
@@ -30,13 +34,23 @@ public class Transaction {
                     double moneyRecipient = recipient.getBill().getMoney();
                     double moneySender = sender.getBill().getMoney();
 
-                    try {
-                        recipient.getBill().addMoney(countMoney);
-                        sender.getBill().takeMoney(countMoney);
-                    } catch (Exception e) {
-                        recipient.getBill().addMoney(moneyRecipient);
-                        sender.getBill().takeMoney(moneySender);
+                    if (moneyRecipient > countMoney) {
+                        recipient.getBill().takeMoney(countMoney);
+                        sender.getBill().addMoney(countMoney);
                     }
+                    else
+                    {
+                        recipient.getBill().takeMoney(moneyRecipient);
+                        sender.getBill().addMoney(moneySender);
+                    }
+
+                    // try {
+                    //     recipient.getBill().addMoney(countMoney);
+                    //     sender.getBill().takeMoney(countMoney);
+                    // } catch (Exception e) {
+                    //     recipient.getBill().addMoney(moneyRecipient);
+                    //     sender.getBill().takeMoney(moneySender);
+                    // }
                     finish = false;
                     Bank.addTransaction(id, recipient, sender, countMoney);
                     sender.getBill().lock.unlock();
