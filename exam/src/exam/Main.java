@@ -37,37 +37,38 @@ public class  Main {
                 Bank.printTransactions();
             }
         });
+        Thread Operations1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new Transaction(account2, account4, 10);
+                } catch (SendManyExeption sendManyExeption) {
+                    sendManyExeption.printStackTrace();
+                }
+                try {
+                    new Transaction(account3, account1, 20);
+                } catch (SendManyExeption sendManyExeption) {
+                    sendManyExeption.printStackTrace();
+                }
 
-//        Thread Operations1 = new Thread(new Runnable()
-//            @Override
-//            public void run() {
-//                try {
-//                    new Transaction(account1, account2, 10);
-//                } catch (SendManyExeption sendManyExeption) {
-//                    sendManyExeption.printStackTrace();
-//                }
-//                try {
-//                    new Transaction(account2, account1, 20);
-//                } catch (SendManyExeption sendManyExeption) {
-//                    sendManyExeption.printStackTrace();
-//                }
-//
-//                try {
-//                    new Transaction(account3, account4, 10);
-//                } catch (SendManyExeption sendManyExeption) {
-//                    sendManyExeption.printStackTrace();
-//                }
-//                try {
-//                    new Transaction(account4, account3, 20);
-//                } catch (SendManyExeption sendManyExeption) {
-//                    sendManyExeption.printStackTrace();
-//                }
-//                Bank.printTransactions();
-//            }
-//        });
+                try {
+                    new Transaction(account3, account2, 10);
+                } catch (SendManyExeption sendManyExeption) {
+                    sendManyExeption.printStackTrace();
+                }
+                try {
+                    new Transaction(account4, account1, 20);
+                } catch (SendManyExeption sendManyExeption) {
+                    sendManyExeption.printStackTrace();
+                }
+                Bank.printTransactions();
+            }
+        });
+
+
 
         Operations.start();
-//        Operations1.start();
+        Operations1.start();
         // try {
         //     new Transaction(account1, account2, 21);
         //
