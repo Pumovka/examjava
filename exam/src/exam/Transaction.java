@@ -31,18 +31,18 @@ public class Transaction {
                         sender.getBill().lock.unlock();
                         throw new SendManyExeption();
                     }
-                    double moneyRecipient = recipient.getBill().getMoney();
-                    double moneySender = sender.getBill().getMoney();
-
-                    if (moneyRecipient > countMoney) {
-                        recipient.getBill().takeMoney(countMoney);
-                        sender.getBill().addMoney(countMoney);
-                    }
-                    else
-                    {
-                        recipient.getBill().takeMoney(moneyRecipient);
-                        sender.getBill().addMoney(moneySender);
-                    }
+                    // double moneyRecipient = recipient.getBill().getMoney();
+                    // double moneySender = sender.getBill().getMoney();
+                    //
+                    // if (moneyRecipient > countMoney) {
+                    //     recipient.getBill().takeMoney(countMoney);
+                    //     sender.getBill().addMoney(countMoney);
+                    // }
+                    // else
+                    // {
+                    //     recipient.getBill().takeMoney(moneyRecipient);
+                    //     sender.getBill().addMoney(moneySender);
+                    // }
 
                     // try {
                     //     recipient.getBill().addMoney(countMoney);
@@ -52,7 +52,7 @@ public class Transaction {
                     //     sender.getBill().takeMoney(moneySender);
                     // }
                     finish = false;
-                    Bank.addTransaction(id, recipient, sender, countMoney);
+                    // Bank.addTransaction(id, recipient, sender, countMoney);
                     sender.getBill().lock.unlock();
                 }
                 recipient.getBill().lock.unlock();
