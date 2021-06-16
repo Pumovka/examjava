@@ -8,7 +8,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Bill {
-    Lock lock = new ReentrantLock();
+    public Lock lock = new ReentrantLock();
 
     protected Random random = new Random();
 

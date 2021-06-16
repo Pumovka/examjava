@@ -13,7 +13,7 @@ public class Bank {
               String.format("Transaction |%d| MONEY=%.2f RECIPIENT: %s, SENDER: %s \n",
                        id,billBalance ,recipient.toString(), sender.toString());
 
-        if(transList.get(id)==null){
+        if(transList.get(id) == null){
             transList.put(id,new ArrayList<String>());
             transList.get(id).add(strTransaction);
         }

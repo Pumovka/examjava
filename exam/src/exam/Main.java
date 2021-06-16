@@ -2,7 +2,7 @@
 
 package exam;
 
-public class Main {
+public class  Main {
 
     public static void main(String[] args) throws InterruptedException {
         final Acc account1 = new Acc("Account1", new Bill("bill_1"));
@@ -10,7 +10,7 @@ public class Main {
         final Acc account3 = new Acc("Account3", new Bill("bill_3"));
         final Acc account4 = new Acc("Account4", new Bill("bill_4"));
 
-        Thread Operations = new Thread(new Runnable()) {
+        Thread Operations = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -34,40 +34,40 @@ public class Main {
                 } catch (SendManyExeption sendManyExeption) {
                     sendManyExeption.printStackTrace();
                 }
-
+                Bank.printTransactions();
             }
         });
 
-        // Thread Operations2 = new Thread(new Runnable() {
-        //     @Override
-        //     public void run() {
-        //         try {
-        //             new Transaction(account1, account2, 10);
-        //         } catch (SendManyExeption sendManyExeption) {
-        //             sendManyExeption.printStackTrace();
-        //         }
-        //         try {
-        //             new Transaction(account2, account1, 20);
-        //         } catch (SendManyExeption sendManyExeption) {
-        //             sendManyExeption.printStackTrace();
-        //         }
-        //
-        //         try {
-        //             new Transaction(account3, account4, 10);
-        //         } catch (SendManyExeption sendManyExeption) {
-        //             sendManyExeption.printStackTrace();
-        //         }
-        //         try {
-        //             new Transaction(account4, account3, 20);
-        //         } catch (SendManyExeption sendManyExeption) {
-        //             sendManyExeption.printStackTrace();
-        //         }
-        //
-        //     }
-        // });
+//        Thread Operations1 = new Thread(new Runnable()
+//            @Override
+//            public void run() {
+//                try {
+//                    new Transaction(account1, account2, 10);
+//                } catch (SendManyExeption sendManyExeption) {
+//                    sendManyExeption.printStackTrace();
+//                }
+//                try {
+//                    new Transaction(account2, account1, 20);
+//                } catch (SendManyExeption sendManyExeption) {
+//                    sendManyExeption.printStackTrace();
+//                }
+//
+//                try {
+//                    new Transaction(account3, account4, 10);
+//                } catch (SendManyExeption sendManyExeption) {
+//                    sendManyExeption.printStackTrace();
+//                }
+//                try {
+//                    new Transaction(account4, account3, 20);
+//                } catch (SendManyExeption sendManyExeption) {
+//                    sendManyExeption.printStackTrace();
+//                }
+//                Bank.printTransactions();
+//            }
+//        });
 
         Operations.start();
-
+//        Operations1.start();
         // try {
         //     new Transaction(account1, account2, 21);
         //
@@ -94,7 +94,7 @@ public class Main {
         //     sendManyExeption.printStackTrace();
         // }
 
-        Bank.printTransactions();
+//        Bank.printTransactions();
         Operations.join();
     }
 }
